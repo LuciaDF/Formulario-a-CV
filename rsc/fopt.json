@@ -1,0 +1,27 @@
+{
+  "skills": {
+    "tag": "skill",
+    "type": "checkbox",
+    "classParent": "form-check",
+    "classInput": "form-check-input",
+    "classLabel": "form-check-label",
+    "data": [
+      {
+        "text": "Adaptacion fisica",
+        "value": "Adaptacion fisica"
+      },
+      {
+        "text": "Creacion videos deportivos",
+        "value": "Creacion videos deportivos"
+      },
+      {
+        "text": "Pack Office",
+        "value": "Pack Office"
+      },
+      {
+        "text": "Tenis",
+        "value": "Tenis"
+      }
+    ]
+  }
+}

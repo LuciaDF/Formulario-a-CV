@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"
+    />
+
+    {% assets "form-styles" %} 
+      <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
+    {% endassets %}
+  </head>
+  <body class="body">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <form
+          id="data-form"
+          action="{{ url_for('curriculum') }}"
+          method="post"
+          class="form"
+        >
+          <div class="form-group">
+            <label for="full_name">Nombre y Apellidos</label>
+            <input
+              type="text"
+              id="full_name"
+              name="full_name"
+              required
+              placeholder="Nombre completo: "
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="birthdate">Fecha de Nacimiento</label>
+            <input
+              type="date"
+              id="birthdate"
+              name="birthdate"
+              required
+              placeholder="Fecha de nacimiento: "
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="occupation">Ocupacion</label>
+            <input
+              type="text"
+              id="occupation"
+              name="occupation"
+              required
+              placeholder="Ocupacion: "
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              required
+              placeholder="Telefono: "
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              required
+              placeholder="Direccion Email: "
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nationality">Nacionalidad</label>
+            <select
+              id="nationality"
+              name="nationality"
+              required
+              title="seleccione"
+              class="selectpicker"
+            >
+              <option value="Peru">Peru</option>
+              <option value="Chile">Chile</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="english_level">Nivel de Ingles</label>
+            <div>
+              <div class="form-radio">
+                <input
+                  type="radio"
+                  name="english_level"
+                  id="english_level1"
+                  value="basico"
+                />
+                <label for="english_level1">Basico</label>
+              </div>
+              <div class="form-radio">
+                <input
+                  type="radio"
+                  name="english_level"
+                  id="english_level2"
+                  value="intermedio"
+                />
+                <label for="english_level2">Intermedio</label>
+              </div>
+              <div class="form-radio">
+                <input
+                  type="radio"
+                  name="english_level"
+                  id="english_level3"
+                  value="avanzado"
+                />
+                <label for="english_level3">Avanzado</label>
+              </div>
+              <div class="form-radio">
+                <input
+                  type="radio"
+                  name="english_level"
+                  id="english_level4"
+                  value="fluido"
+                />
+                <label for="english_level4">Fluido</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="programming_languages">Lenguajes de Programacion</label>
+            <select
+              id="programming_languages" 
+              name="programming_languages"
+              multiple
+              required 
+              class="selectpicker"
+              title="seleccione"
+            >
+              <option value="C++">C++</option>
+              <option value="Python">Python</option>
+              <option value="C#">C#</option>
+              <option value="Java">Java</option>
+              <option value="Javascript">Javascript</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Aptitudes">Aptitudes</label>
+            <input
+              type="text"
+              id="aptitudes"
+              name="aptitudes"
+              list="aptitudes_list"
+              required
+              placeholder="Aptitudes: "
+              class="form-control"
+            />
+            <datalist id="aptitudes_list">
+              <option value="flexibilidad"></option>
+              <option value="resiliencia"></option>
+              <option value="liderazgo"></option>
+              <option value="integridad"></option>
+              <option value="empatia"></option>
+            </datalist>
+          </div>
+
+          <div class="form-group">
+            <label for="skills"> Habilidades </label>
+            <input id="skill-id" type="hidden" name="skill">
+            <div id="skills">
+              loading...
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="profile">Perfil</label>
+            <textarea
+              id="profile"
+              name="profile"
+              rows="3"
+              required
+              class="form-control"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="error-content">
+            <p id="error-message"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script id="datasource" type="application/json">
+    {{ context }}
+   </script>
+
+  <script src="	https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+  {% assets "form-scrips" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+</html>
